@@ -1,16 +1,19 @@
 package heritage.africa.go_gainde_service.service.Impl;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+
+import org.springframework.stereotype.Service;
+
 import heritage.africa.go_gainde_service.entity.Otp;
 import heritage.africa.go_gainde_service.entity.Utilisateur;
 import heritage.africa.go_gainde_service.entity.enums.OtpType;
 import heritage.africa.go_gainde_service.repository.OtpRepository;
 import heritage.africa.go_gainde_service.service.OtpService;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-
+@Service
 public class OtpServiceImpl implements OtpService {
 
     private static final int OTP_LENGTH = 6;

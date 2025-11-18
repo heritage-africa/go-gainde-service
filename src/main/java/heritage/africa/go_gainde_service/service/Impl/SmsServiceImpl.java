@@ -1,15 +1,16 @@
 package heritage.africa.go_gainde_service.service.Impl;
 
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
+
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-
-
 import com.twilio.type.PhoneNumber;
+
 import heritage.africa.go_gainde_service.service.SmsService;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 
 
+@Service
 public class SmsServiceImpl implements SmsService {
 
     private final Environment env;
@@ -25,7 +26,9 @@ public class SmsServiceImpl implements SmsService {
         String accountSid = env.getProperty("twilio.account.sid");
         String authToken = env.getProperty("twilio.auth.token");
         String twilioNumber = env.getProperty("twilio.phone.number");
-
+        ///erefdtgtreewrtyrewrtytr
+        ///erefdtgtreewrtyrewrtytr
+        ///erefdtgtreewrtyrewrtytr
         Twilio.init(accountSid, authToken);
 
         Message.creator(

@@ -34,10 +34,9 @@ public class UtilisateurController {
     public ResponseEntity<?> registerUser(@RequestBody UserRegistrationRequest request) {
         Utilisateur user = userService.registerUser(request);
         
-        // Initiate email verification
         userService.initiatePhoneVerification(user.getId());
         
-        return ResponseEntity.ok("User registered successfully. Verification OTP sent to email.");
+        return ResponseEntity.ok("User registered successfully. Verification OTP sent.");
     }
     
     @PostMapping("/login")

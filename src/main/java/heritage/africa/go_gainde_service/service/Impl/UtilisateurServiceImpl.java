@@ -1,6 +1,7 @@
 package heritage.africa.go_gainde_service.service.Impl;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import heritage.africa.go_gainde_service.entity.Otp;
 import heritage.africa.go_gainde_service.entity.Utilisateur;
@@ -12,6 +13,8 @@ import heritage.africa.go_gainde_service.service.SmsService;
 import heritage.africa.go_gainde_service.service.UtilisateurService;
 import heritage.africa.go_gainde_service.web.dto.Request.UserRegistrationRequest;
 
+
+@Service
 public class UtilisateurServiceImpl implements UtilisateurService {
 
     private final UtilisateurRepository userRepository;
@@ -54,6 +57,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         Otp otp = otpService.createOtp(user, OtpType.PHONE_VERIFICATION);
         smsService.sendOtpSms(user.getPhoneNumber(), otp.getCode());
     }
+
+
+
+    
 
 
 
