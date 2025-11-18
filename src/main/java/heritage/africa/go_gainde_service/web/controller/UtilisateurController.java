@@ -21,6 +21,8 @@ import heritage.africa.go_gainde_service.web.dto.Request.AuthRequest;
 import heritage.africa.go_gainde_service.web.dto.Request.OtpVerificationRequest;
 import heritage.africa.go_gainde_service.web.dto.Request.UserRegistrationRequest;
 import heritage.africa.go_gainde_service.web.dto.Response.AuthResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 
 // AuthController.java
@@ -34,6 +36,9 @@ public class UtilisateurController {
     private final UtilisateurService userService;
     private final OtpService otpService;
     
+
+    @ApiResponse(responseCode = "200", description = "user logged in successfully")
+    @ApiResponse(responseCode = "404", description = "user not found")
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserRegistrationRequest request) {
         Utilisateur user = userService.registerUser(request);
@@ -43,6 +48,10 @@ public class UtilisateurController {
         return ResponseEntity.ok("User registered successfully. Verification OTP sent.");
     }
     
+
+    @Operation(summary = "Login user")
+    @ApiResponse(responseCode = "200", description = "user logged in successfully")
+    @ApiResponse(responseCode = "404", description = "user not found")
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequest request) throws Exception {
         try {

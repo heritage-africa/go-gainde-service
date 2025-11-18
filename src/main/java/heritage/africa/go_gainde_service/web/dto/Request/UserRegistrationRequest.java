@@ -1,5 +1,6 @@
 package heritage.africa.go_gainde_service.web.dto.Request;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -11,13 +12,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserRegistrationRequest {
 
-    @NotBlank
+    @Schema(
+        description = "Nom d'utilisateur unique choisi par l'utilisateur",
+        example = "babacar123",
+        required = true
+    )
+    @NotBlank(message = "Le nom d'utilisateur est obligatoire")
     private String username;
 
-    @NotBlank
-    @Size(min = 6, max = 20)
+    @Schema(
+        description = "Mot de passe de l'utilisateur (entre 6 et 20 caractères)",
+        example = "passer123",
+        required = true,
+        minLength = 6,
+        maxLength = 20
+    )
+    @NotBlank(message = "Le mot de passe est obligatoire")
+    @Size(min = 6, max = 20, message = "Le mot de passe doit contenir entre 6 et 20 caractères")
     private String password;
 
+    @Schema(
+        description = "Numéro de téléphone de l'utilisateur (utilisé pour l'envoi des OTP)",
+        example = "+221773456789"
+    )
     private String phoneNumber;
-
 }
