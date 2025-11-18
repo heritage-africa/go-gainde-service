@@ -1,4 +1,4 @@
-package heritage.africa.go_gainde_service.dto;
+package heritage.africa.go_gainde_service.web.dto.Request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

@@ -1,6 +1,7 @@
 package heritage.africa.go_gainde_service.service.Impl;
 
-import heritage.africa.go_gainde_service.dto.UserRegistrationRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import heritage.africa.go_gainde_service.entity.Otp;
 import heritage.africa.go_gainde_service.entity.Utilisateur;
 import heritage.africa.go_gainde_service.entity.enums.OtpType;
@@ -9,7 +10,7 @@ import heritage.africa.go_gainde_service.repository.UtilisateurRepository;
 import heritage.africa.go_gainde_service.service.OtpService;
 import heritage.africa.go_gainde_service.service.SmsService;
 import heritage.africa.go_gainde_service.service.UtilisateurService;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import heritage.africa.go_gainde_service.web.dto.Request.UserRegistrationRequest;
 
 public class UtilisateurServiceImpl implements UtilisateurService {
 
@@ -61,6 +62,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return otpService.validateOtp(user, code, OtpType.PHONE_VERIFICATION);
+    }
+
+    @Override
+    public Utilisateur getUserByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
 }
