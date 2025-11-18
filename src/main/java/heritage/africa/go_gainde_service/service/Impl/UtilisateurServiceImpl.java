@@ -77,4 +77,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
+    @Override
+    public Utilisateur getUserById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
 }

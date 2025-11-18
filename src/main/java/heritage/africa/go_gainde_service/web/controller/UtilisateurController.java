@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import heritage.africa.go_gainde_service.config.JwtTokenUtil;
 import heritage.africa.go_gainde_service.entity.Utilisateur;
+import heritage.africa.go_gainde_service.entity.enums.OtpType;
+import heritage.africa.go_gainde_service.service.OtpService;
 import heritage.africa.go_gainde_service.service.UtilisateurService;
 import heritage.africa.go_gainde_service.web.dto.Request.AuthRequest;
+import heritage.africa.go_gainde_service.web.dto.Request.OtpVerificationRequest;
 import heritage.africa.go_gainde_service.web.dto.Request.UserRegistrationRequest;
 import heritage.africa.go_gainde_service.web.dto.Response.AuthResponse;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +32,7 @@ public class UtilisateurController {
     private final JwtTokenUtil jwtTokenUtil;
     private final UserDetailsService userDetailsService;
     private final UtilisateurService userService;
+    private final OtpService otpService;
     
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserRegistrationRequest request) {
@@ -55,6 +59,17 @@ public class UtilisateurController {
         Utilisateur user = userService.getUserByUsername(request.getUsername());
         
         return ResponseEntity.ok(new AuthResponse(token, user.getId(), user.getUsername(), user.isVerified()));
+    }
+
+    @PostMapping("/verify-otp")
+    public ResponseEntity<?> verifyEmail(@RequestBody OtpVerificationRequest request) {
+        Utilisateur user = userService.getUserById(request.getUserId());
+        boolean isValid = otpService.validateOtp(user, request.getCode(), OtpType.PHONE_VERIFICATION);
+        if (isValid) {
+            return ResponseEntity.ok("otp verified successfully");
+        } else {
+            return ResponseEntity.badRequest().body("Invalid or expired OTP");
+        }
     }
     
     // @PostMapping("/verify-email")
@@ -84,6 +99,8 @@ public class UtilisateurController {
     //         return ResponseEntity.badRequest().body("Invalid or expired OTP");
     //     }
     // }
+
+
     
     @PostMapping("/initiate-phone-verification")
     public ResponseEntity<?> initiatePhoneVerification(@RequestParam Long userId) {
