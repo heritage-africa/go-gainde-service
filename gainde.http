@@ -3,7 +3,7 @@ POST http://localhost:8085/api/v1/auth/register
 Content-Type: application/json
 
 {
-    "username": "babacar",
+    "username": "boubs",
     "password": "123456",
     "phoneNumber": "+221774796838"
 }
@@ -18,7 +18,7 @@ POST http://localhost:8085/api/v1/auth/verify-otp
 Content-Type: application/json
 
 {
-    "code": "323884",
+    "code": "725245",
     "userId": "1"
     
 }
@@ -32,7 +32,7 @@ POST http://localhost:8085/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "username": "babacar",
+    "username": "boubs",
     "password": "123456"
 }
 
