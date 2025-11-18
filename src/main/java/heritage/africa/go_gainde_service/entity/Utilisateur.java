@@ -2,10 +2,10 @@ package heritage.africa.go_gainde_service.entity;
 
 import heritage.africa.go_gainde_service.entity.enums.Role;
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,15 +13,17 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Utilisateur  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique = true)
-    private String email;
-
+    @Column(nullable = false)
+    private String username;
+    private  String localisation;
     @Column(nullable = false)
     private String password;
 
