@@ -40,7 +40,7 @@ public class Otp {
     // @ManyToOne(fetch = FetchType.LAZY)
     // @JoinColumn(name = "user_id", nullable = false)
     // private Utilisateur user;
-@Column(nullable = false)
+    @Column(nullable = false)
     private String phoneNumber;
 
     @Column
@@ -53,8 +53,22 @@ public class Otp {
        @Column(nullable = false)
     private boolean used = false;  // 
 
+    @Column
     private String Longitude;
+
+    @Column
     private String Latitude;
+
+    @Column
     private LocalDate dateNaissance;
+
+
+    @Column
+    private String tempNom;
+
+    @Column
+    private String tempPrenom;
+
+    
 
 }

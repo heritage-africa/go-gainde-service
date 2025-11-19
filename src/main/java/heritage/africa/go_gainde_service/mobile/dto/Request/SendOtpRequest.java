@@ -16,6 +16,20 @@ public class SendOtpRequest {
 
 
     @Schema(
+        description = "nom de l'utilisateur utilisé pour se connecter",
+        example = "babacar@gmail",
+        required = true
+    )
+    private String nom;
+
+    @Schema(
+        description = "prenom de l'utilisateur utilisé pour se connecter",
+        example = "babacar@gmail",
+        required = true
+    )
+    private String prenom;
+
+    @Schema(
         description = "Date de naissance de l'utilisateur",
         example = "2000-01-01",
         required = true

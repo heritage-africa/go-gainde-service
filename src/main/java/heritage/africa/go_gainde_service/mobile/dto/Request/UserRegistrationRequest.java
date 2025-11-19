@@ -21,6 +21,7 @@ public class UserRegistrationRequest {
     private String username;
 
 
+
     // @Schema(
     //     description = "Adresse email de l'utilisateur (utilisé pour l'envoi des OTP)",
     //     example = "9aD2O@example.com"

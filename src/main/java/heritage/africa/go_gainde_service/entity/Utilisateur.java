@@ -21,11 +21,33 @@ public class Utilisateur  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
     @Column(nullable = false)
     private String username;
+
+
+    @Column(nullable = true)
+    private String nom;
+
+
+    @Column(nullable = true)
+    private String prenom;
+
+
+    @Column(nullable = true)
     private  String localisation;
+
+
+    @Column(nullable = true)
+    private int codeSecret;
+
+
     @Column(nullable = false)
     private String password;
+
+
+
 
     @Column(nullable = true)
     private String email;

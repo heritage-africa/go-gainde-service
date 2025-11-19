@@ -5,8 +5,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import heritage.africa.go_gainde_service.config.JwtTokenUtil;
 import heritage.africa.go_gainde_service.core.ApiErrorResponse;
+import heritage.africa.go_gainde_service.core.ApiSuccessResponse;
 import heritage.africa.go_gainde_service.entity.Otp;
 import heritage.africa.go_gainde_service.entity.Utilisateur;
 import heritage.africa.go_gainde_service.entity.enums.OtpType;
@@ -43,6 +48,7 @@ import heritage.africa.go_gainde_service.service.OtpService;
 import heritage.africa.go_gainde_service.service.SmsService;
 import heritage.africa.go_gainde_service.service.UtilisateurService;
 import heritage.africa.go_gainde_service.utils.exception.NotFoundException;
+import heritage.africa.go_gainde_service.web.dto.response.RestResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -62,7 +68,7 @@ public class UtilisateurController {
     private final UtilisateurRepository userRepository;
     private final SmsService smsService;
     private final OtpRepository otpRepository;
-    
+      private static final int OTP_LENGTH = 6;
 
     @ApiResponse(responseCode = "200", description = "user logged in successfully")
     @ApiResponse(responseCode = "404", description = "user not found")
@@ -150,41 +156,63 @@ public class UtilisateurController {
     @Operation(summary = "Login user")
     @ApiResponse(responseCode = "200", description = "user logged in successfully")
     @ApiResponse(responseCode = "404", description = "user not found")
-@PostMapping("/login")
-public ResponseEntity<?> authenticateWeb(@RequestBody AuthRequest loginRequest) {
-    try {
-        // 1. Authentification
-        Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                loginRequest.getNumeroTelephone(),
-                loginRequest.getPassword()
-            )
-        );
-        
-        // 2. Récupérer les détails (CustomUserDetails)
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        
-        // 3. Récupérer l'entité Utilisateur depuis CustomUserDetails
-        Utilisateur user = userDetails.getUser(); // Vous devez avoir un getter
-        
-        // 4. Générer le token avec le username comme identifiant
-        String token = jwtTokenUtil.generateTokenWithIdentifier(
-            userDetails,
-            user.getPhoneNumber()
-        );
-        
-        // 5. Retourner la réponse
-        return ResponseEntity.ok(
-            new AuthResponse(token, user.getId(), user.getPhoneNumber(), user.isVerified())
-        );
-        
-    } catch (Exception e) {
-        return new ResponseEntity<>(
-            ApiErrorResponse.validationError("Identifiant ou mot de passe incorrect"), 
-            HttpStatus.BAD_REQUEST
-        );
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateWeb(@RequestBody AuthRequest loginRequest) {
+        try {
+            // 1. Authentification
+            Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                    loginRequest.getNumeroTelephone(),
+                    loginRequest.getCodeSecret()
+                )
+            );
+            
+            // 2. Récupérer les détails (CustomUserDetails)
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            
+            // 3. Récupérer l'entité Utilisateur depuis CustomUserDetails
+            Utilisateur user = userDetails.getUser(); // Vous devez avoir un getter
+            
+            // 4. Générer le token avec le username comme identifiant
+            String token = jwtTokenUtil.generateTokenWithIdentifier(
+                userDetails,
+                user.getPhoneNumber()
+            );
+            
+            // 5. Retourner la réponse
+            return ResponseEntity.ok(
+                new AuthResponse(token, user.getId(), user.getPhoneNumber(), user.isVerified())
+            );
+            
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                ApiErrorResponse.validationError("Identifiant ou mot de passe incorrect"), 
+                HttpStatus.BAD_REQUEST
+            );
+        }
     }
-}
+
+
+    // le logout 
+
+    @Operation(summary = "Logout user")
+    @ApiResponse(responseCode = "200", description = "user logged in successfully")
+    @ApiResponse(responseCode = "404", description = "user not found")
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, Object>> logout() {
+        ResponseCookie cookie = ResponseCookie.from("jwt", "")
+                .httpOnly(true)
+                .secure(false)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
+       return ResponseEntity.ok()
+               .header(HttpHeaders.SET_COOKIE, cookie.toString())
+               .body(RestResponse.response(HttpStatus.OK, null, "Logout"));
+
+    }
+
 
 
     @Operation(summary = "Get current user")
@@ -286,7 +314,7 @@ public ResponseEntity<?> authenticateWeb(@RequestBody AuthRequest loginRequest) 
     @ApiResponse(responseCode = "200", description = "otp sent successfully")
     @ApiResponse(responseCode = "404", description = "user not found")
     @PostMapping("/send-otp")
-public ResponseEntity<?> sendOtp(@RequestBody SendOtpRequest request) {
+    public ResponseEntity<?> sendOtp(@RequestBody SendOtpRequest request) {
     // 1. Vérifier si le numéro existe déjà
     if (userRepository.existsByPhoneNumber(request.getPhoneNumber())) {
         return ResponseEntity.badRequest()
@@ -301,11 +329,14 @@ public ResponseEntity<?> sendOtp(@RequestBody SendOtpRequest request) {
     otp.setCode(otpCode);
     otp.setPhoneNumber(request.getPhoneNumber());
     otp.setTempUsername(request.getUsername());  // Stocke temporairement
+    otp.setTempNom(request.getNom());
+    otp.setTempPrenom(request.getPrenom());
     otp.setCreatedAt(LocalDateTime.now());
     otp.setExpiresAt(LocalDateTime.now().plusMinutes(5));
     otp.setType(OtpType.PHONE_VERIFICATION);
     otp.setLatitude(request.getLatitude());
     otp.setLongitude(request.getLongitude());
+
     LocalDate dateNaissance = LocalDate.parse(request.getDateNaissance(), DateTimeFormatter.ISO_DATE);
     otp.setDateNaissance(dateNaissance);
     otp.setVerified(false);
@@ -397,7 +428,7 @@ public ResponseEntity<?> completeRegistration(@RequestBody CompleteRegistrationR
         }
         
         // 3. Valider le mot de passe
-        if (request.getPassword() == null || request.getPassword().length() < 6) {
+        if (request.getCodeSecret() == null || request.getCodeSecret().length() < 4) {
             return ResponseEntity.badRequest()
                 .body(ApiErrorResponse.validationError("Le mot de passe doit contenir au moins 6 caractères"));
         }
@@ -417,11 +448,16 @@ public ResponseEntity<?> completeRegistration(@RequestBody CompleteRegistrationR
         Utilisateur user = new Utilisateur();
         user.setUsername(otp.getTempUsername());
         user.setPhoneNumber(otp.getPhoneNumber());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPassword(passwordEncoder.encode(request.getCodeSecret()));
         user.setVerified(true);  // ← Déjà vérifié via OTP !
+        user.setNom(otp.getTempNom());
+        user.setPrenom(otp.getTempPrenom());
         user.setRole(Role.ROLE_USER);
+        user.setLatitude(Double.parseDouble(otp.getLatitude()));
+        user.setLongitude(Double.parseDouble(otp.getLongitude()));
+
         
-        
+        user.setBirthDate(otp.getDateNaissance().toString());
         // Ajouter d'autres champs si nécessaire
         userRepository.save(user);
         
@@ -448,4 +484,57 @@ public ResponseEntity<?> completeRegistration(@RequestBody CompleteRegistrationR
             .body(ApiErrorResponse.internalServerError(e.getMessage()));
     }
 }
+
+
+
+@Operation(summary = "Resend OTP")
+@ApiResponse(responseCode = "200", description = "envoies otp successfully")
+@ApiResponse(responseCode = "404", description = "failed to send otp")
+@PostMapping("/resend-otp/{otpId}")
+public ResponseEntity<?> resendOtp(@PathVariable Long otpId) {
+    try {
+        // 1. Récupérer l'ancien OTP
+        Otp oldOtp = otpRepository.findById(otpId)
+            .orElseThrow(() -> new NotFoundException("OTP non trouvé"));
+        
+        // 2. Vérifier qu'il n'est pas déjà utilisé
+        if (oldOtp.isUsed()) {
+            return ResponseEntity.badRequest()
+                .body(ApiErrorResponse.validationError(
+                    "Ce code a déjà été utilisé pour créer un compte"
+                ));
+        }
+        
+        // 3. Générer un NOUVEAU code
+        smsService.sendOtpSms(oldOtp.getPhoneNumber(), generateOtp());
+        
+        return ResponseEntity.ok(ApiSuccessResponse.success(
+            "Code OTP envoyé avec succès"
+        ));
+        
+    } catch (NotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body(ApiErrorResponse.notFound(e.getMessage()));
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(ApiErrorResponse.internalServerError(
+                "Erreur lors de l'envoi du code"
+            ));
+    }
 }
+
+
+ public String generateOtp() {
+        // Generate a 6-digit numeric OTP
+        Random random = new Random();
+        StringBuilder otp = new StringBuilder();
+
+        for (int i = 0; i < OTP_LENGTH; i++) {
+            otp.append(random.nextInt(10));
+        }
+
+        return otp.toString();
+    }
+
+}
+        
