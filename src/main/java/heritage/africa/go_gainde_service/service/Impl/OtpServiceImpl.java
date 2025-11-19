@@ -12,6 +12,7 @@ import heritage.africa.go_gainde_service.entity.Utilisateur;
 import heritage.africa.go_gainde_service.entity.enums.OtpType;
 import heritage.africa.go_gainde_service.repository.OtpRepository;
 import heritage.africa.go_gainde_service.service.OtpService;
+import heritage.africa.go_gainde_service.utils.exception.NotFoundException;
 
 @Service
 public class OtpServiceImpl implements OtpService {
@@ -39,7 +40,7 @@ public class OtpServiceImpl implements OtpService {
 
     public Otp createOtp(Utilisateur user, OtpType type) {
         // Clean up expired OTPs for this user
-        cleanUpExpiredOtps(user.getId());
+        cleanUpExpiredOtps(user.getId().toString());
 
         // Generate and save new OTP
         String code = generateOtp();
@@ -52,7 +53,8 @@ public class OtpServiceImpl implements OtpService {
         otp.setExpiresAt(expiresAt);
         otp.setVerified(false);
         otp.setType(type);
-        otp.setUser(user);
+        
+        // otp.setUser(user);
 
         return otpRepository.save(otp);
     }
@@ -60,8 +62,12 @@ public class OtpServiceImpl implements OtpService {
     public boolean validateOtp(Utilisateur user, String code, OtpType type) {
         LocalDateTime now = LocalDateTime.now();
 
-        Optional<Otp> otpOptional = otpRepository.findByCodeAndUser_IdAndTypeAndVerifiedIsFalseAndExpiresAtAfter(
-                code, user.getId(), type, now);
+
+        // PAS PHONE number ici
+        Optional<Otp> otpOptional = otpRepository
+        .findByCodeAndPhoneNumberAndTypeAndVerifiedIsFalseAndExpiresAtAfter(
+            code, user.getPhoneNumber(), type, now
+        );
 
         if (otpOptional.isPresent()) {
             Otp otp = otpOptional.get();
@@ -70,12 +76,12 @@ public class OtpServiceImpl implements OtpService {
             return true;
         }
 
-        return false;
+         throw new NotFoundException("OTP not found");
     }
 
-    private void cleanUpExpiredOtps(Long userId) {
+    private void cleanUpExpiredOtps(String userId) {
         LocalDateTime now = LocalDateTime.now();
-        List<Otp> expiredOtps = otpRepository.findByUser_IdAndVerifiedIsFalseAndExpiresAtBefore(userId, now);
+        List<Otp> expiredOtps = otpRepository.findByPhoneNumberAndVerifiedIsFalseAndExpiresAtBefore(userId, now);
         otpRepository.deleteAll(expiredOtps);
     }
 }

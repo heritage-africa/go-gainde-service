@@ -21,14 +21,10 @@ public class SmsServiceImpl implements SmsService {
 
 
 
-
     public void sendOtpSms(String phoneNumber, String otpCode) {
         String accountSid = env.getProperty("twilio.account.sid");
         String authToken = env.getProperty("twilio.auth.token");
         String twilioNumber = env.getProperty("twilio.phone.number");
-        ///erefdtgtreewrtyrewrtytr
-        ///erefdtgtreewrtyrewrtytr
-        ///erefdtgtreewrtyrewrtytr
         Twilio.init(accountSid, authToken);
 
         Message.creator(

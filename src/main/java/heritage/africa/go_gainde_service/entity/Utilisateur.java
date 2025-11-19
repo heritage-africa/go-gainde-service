@@ -1,16 +1,16 @@
 package heritage.africa.go_gainde_service.entity;
 
 import heritage.africa.go_gainde_service.entity.enums.Role;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -27,16 +27,35 @@ public class Utilisateur  {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = true)
+    private String email;
+
     @Column(name = "phone_number", unique = true)
     private String phoneNumber;
 
+    //date de naissance
+    @Column(name = "birth_date", nullable = true)
+    private String birthDate;
+
     @Column(name = "is_verified", nullable = false)
     private boolean isVerified = false;
+
+    // New fields for storing longitude and latitude
+    @Column(name = "longitude", nullable = true)
+    private Double longitude;
+
+   
+
+    @Column(name = "latitude", nullable = true)
+    private Double latitude;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Otp> otps = new ArrayList<>();
+    // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    // private List<Otp> otps = new ArrayList<>();
+
+
+
 }

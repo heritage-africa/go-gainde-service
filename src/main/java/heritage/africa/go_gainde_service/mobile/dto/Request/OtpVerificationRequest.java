@@ -1,4 +1,4 @@
-package heritage.africa.go_gainde_service.web.dto.Request;
+package heritage.africa.go_gainde_service.mobile.dto.Request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

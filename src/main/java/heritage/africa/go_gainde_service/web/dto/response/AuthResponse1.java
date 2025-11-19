@@ -1,4 +1,4 @@
-package heritage.africa.go_gainde_service.web.dto.Response;
+package heritage.africa.go_gainde_service.web.dto.response;
 
 // AuthResponse.java
 
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthResponse {
+public class AuthResponse1{
     private String token;
     private Long userId;
     private String email;

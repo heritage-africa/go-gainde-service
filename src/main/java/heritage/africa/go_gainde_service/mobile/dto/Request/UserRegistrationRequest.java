@@ -1,4 +1,4 @@
-package heritage.africa.go_gainde_service.web.dto.Request;
+package heritage.africa.go_gainde_service.mobile.dto.Request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -19,6 +19,13 @@ public class UserRegistrationRequest {
     )
     @NotBlank(message = "Le nom d'utilisateur est obligatoire")
     private String username;
+
+
+    // @Schema(
+    //     description = "Adresse email de l'utilisateur (utilisé pour l'envoi des OTP)",
+    //     example = "9aD2O@example.com"
+    // )
+    // private String email;
 
     @Schema(
         description = "Mot de passe de l'utilisateur (entre 6 et 20 caractères)",
