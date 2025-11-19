@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,9 +43,9 @@ import heritage.africa.go_gainde_service.service.OtpService;
 import heritage.africa.go_gainde_service.service.SmsService;
 import heritage.africa.go_gainde_service.service.UtilisateurService;
 import heritage.africa.go_gainde_service.utils.exception.NotFoundException;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import java.util.Map;
 
 
 // AuthController.java
@@ -145,6 +146,10 @@ public class UtilisateurController {
 
     // AuthController.java
 
+
+    @Operation(summary = "Login user")
+    @ApiResponse(responseCode = "200", description = "user logged in successfully")
+    @ApiResponse(responseCode = "404", description = "user not found")
 @PostMapping("/login")
 public ResponseEntity<?> authenticateWeb(@RequestBody AuthRequest loginRequest) {
     try {
@@ -182,6 +187,9 @@ public ResponseEntity<?> authenticateWeb(@RequestBody AuthRequest loginRequest) 
 }
 
 
+    @Operation(summary = "Get current user")
+    @ApiResponse(responseCode = "200", description = "user logged in successfully")
+    @ApiResponse(responseCode = "404", description = "user not found")
     @GetMapping("/me")
     public ResponseEntity<?> getCurrentUser(@CookieValue(value = "jwt_token", required = false) String token) {
         if (token == null || token.isEmpty()) {
@@ -259,6 +267,11 @@ public ResponseEntity<?> authenticateWeb(@RequestBody AuthRequest loginRequest) 
 
 
     
+
+
+    @Operation(summary = "Initiate phone verification")
+    @ApiResponse(responseCode = "200", description = "user logged in successfully")
+    @ApiResponse(responseCode = "404", description = "user not found")
     @PostMapping("/initiate-phone-verification")
     public ResponseEntity<?> initiatePhoneVerification(@RequestParam Long userId) {
         userService.initiatePhoneVerification(userId);
@@ -269,6 +282,9 @@ public ResponseEntity<?> authenticateWeb(@RequestBody AuthRequest loginRequest) 
 
 
 
+    @Operation(summary = "Send OTP")
+    @ApiResponse(responseCode = "200", description = "otp sent successfully")
+    @ApiResponse(responseCode = "404", description = "user not found")
     @PostMapping("/send-otp")
 public ResponseEntity<?> sendOtp(@RequestBody SendOtpRequest request) {
     // 1. Vérifier si le numéro existe déjà
@@ -303,6 +319,10 @@ public ResponseEntity<?> sendOtp(@RequestBody SendOtpRequest request) {
         "OTP envoyé avec succès"));
 }
 
+
+@Operation(summary = "Verify OTP")
+@ApiResponse(responseCode = "200", description = "telephone verified successfully")
+@ApiResponse(responseCode = "404", description = "telephone not found")
 @PostMapping("/verify-otp")
 public ResponseEntity<?> verifyOtp(@RequestBody VerifyOtpRequest request) {
     try {
@@ -348,6 +368,11 @@ public ResponseEntity<?> verifyOtp(@RequestBody VerifyOtpRequest request) {
     }
 }
 
+
+
+@Operation(summary = "Complete registration")
+@ApiResponse(responseCode = "200", description = "user logged in successfully")
+@ApiResponse(responseCode = "404", description = "user not found")
 @PostMapping("/register")
 public ResponseEntity<?> completeRegistration(@RequestBody CompleteRegistrationRequest request) {
     try {

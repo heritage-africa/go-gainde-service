@@ -58,7 +58,7 @@ POST http://localhost:8085/api/v1/auth/verify-otp
 Content-Type: application/json
 
 {
-    "code": "739448",
+    "code": "896420",
     "otpId": "1"
     
 }

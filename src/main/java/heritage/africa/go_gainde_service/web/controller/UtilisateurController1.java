@@ -22,6 +22,8 @@ import heritage.africa.go_gainde_service.service.SmsService;
 import heritage.africa.go_gainde_service.service.UtilisateurService;
 import heritage.africa.go_gainde_service.web.dto.request.AuthRequest1;
 import heritage.africa.go_gainde_service.web.dto.response.AuthResponse1;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -35,6 +37,11 @@ public class UtilisateurController1 {
     private final UserDetailsService userDetailsService;
     private final SmsService smsService;
 
+
+
+@Operation(summary = "Complete registration")
+@ApiResponse(responseCode = "200", description = "user logged in successfully")
+@ApiResponse(responseCode = "404", description = "user not found")
 @PostMapping("/login")
 public ResponseEntity<?> authenticateWeb(@RequestBody AuthRequest1 loginRequest) {
     try {
@@ -103,6 +110,10 @@ public ResponseEntity<?> authenticateWeb(@RequestBody AuthRequest1 loginRequest)
     //     return ResponseEntity.ok("OTP resent successfully");
     // }
     
+
+    @Operation(summary = "verify phone")
+    @ApiResponse(responseCode = "200", description = "phone verified successfully")
+    @ApiResponse(responseCode = "404", description = "phone not found")
     @PostMapping("/verify-phone")
     public ResponseEntity<?> verifyPhone(@RequestBody OtpVerificationRequest request) {
         boolean isValid = userService.verifyPhoneOtp(request.getUserId(), request.getCode());
