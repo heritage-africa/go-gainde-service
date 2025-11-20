@@ -1,5 +1,7 @@
 package heritage.africa.go_gainde_service.service.Impl;
 
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -115,6 +117,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public boolean verifyEmailOtp(Long userId, String code) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'verifyEmailOtp'");
+    }
+
+    @Override
+    public List<Utilisateur> getAllUsers() {
+        return userRepository.findAll();
     }
 
 }

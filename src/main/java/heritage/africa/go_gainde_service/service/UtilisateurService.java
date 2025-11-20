@@ -1,5 +1,7 @@
 package heritage.africa.go_gainde_service.service;
 
+import java.util.List;
+
 import heritage.africa.go_gainde_service.entity.Utilisateur;
 import heritage.africa.go_gainde_service.mobile.dto.Request.UserRegistrationRequest;
 
@@ -17,6 +19,9 @@ public interface UtilisateurService {
 
 
     boolean verifyEmailOtp(Long userId, String code);
+
+
+    List<Utilisateur> getAllUsers();
 
 
     // Utilisateur registerAdminUtilisateur(AuthRequest1 request);

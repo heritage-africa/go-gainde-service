@@ -1,0 +1,413 @@
+{
+  "Selectionneurs": {
+  "nom": "Pape Bouna Thiaw",
+  "age": 44,
+  "faits": "Vainqueur du Championnat d'Afrique des Nations (CHAN) 2022 avec la sélection locale du Sénégal ; nommé sélectionneur de l’équipe nationale senior en décembre 2024",
+  "naissance": "05 février 1981, Dakar, Sénégal",
+  "parcours": [
+    "ASC Yeggo",
+    "Saint-Étienne",
+    "Istres",
+    "Lausanne-Sport",
+    "Strasbourg",
+    "Dynamo Moscou (prêt)",
+    "Metz",
+    "Deportivo Alavés",
+    "Lorca Deportiva",
+    "US Créteil",
+    "ASC Diaraf",
+    "Niarry Tally (joueur)",
+    "Niarry Tally (entraîneur)",
+    "Sénégal A' (sélectionneur)",
+    "Sénégal (sélectionneur)"
+  ],
+  "stats": {
+    "sélections": 16,
+    "buts": 5
+  }
+},
+"Gardiens de but": [
+        {
+            "nom": "Édouard Mendy",
+            "club": "Al-Ahli",
+            "age": 33,
+            "faits": "Titulaire régulier, 2 clean sheets en 2025",
+            "naissance": "1 mars 1992, Montivilliers, France",
+            "parcours": [
+                "Cherbourg",
+                "Reims",
+                "Rennes",
+                "Chelsea",
+                "Al-Ahli"
+            ],
+            "stats": "2 clean sheets, 18 arrêts, 0 but encaissé sur penalty"
+        },
+        {
+            "nom": "Yehvann Diouf",
+            "club": "OGC Nice",
+            "age": 25,
+            "faits": "10 matchs, 38 arrêts, 2 clean sheets",
+            "naissance": "16 novembre 1999, Montreuil, France",
+            "parcours": [
+                "Troyes",
+                "Reims",
+                "OGC Nice"
+            ],
+            "stats": "38 arrêts, 2 clean sheets, 1 interception haute"
+        },
+        {
+            "nom": "Mory Diaw",
+            "club": "Le Havre AC",
+            "age": 32,
+            "faits": "7 matchs, 14 buts concédés, 1 penalty arrêté",
+            "naissance": "22 juin 1993, Poissy, France",
+            "parcours": [
+                "PSG",
+                "Clermont",
+                "Lausanne-Sport",
+                "Le Havre AC"
+            ],
+            "stats": "14 buts concédés en 7 matchs, 1 penalty arrêté"
+        }
+    ],
+    "Défenseurs": [
+        {
+            "nom": "Kalidou Koulibaly",
+            "club": "Al-Hilal",
+            "age": 34,
+            "faits": "95 sélections, 2 buts",
+            "naissance": "20 juin 1991, Saint-Dié-des-Vosges, France",
+            "parcours": [
+                "Metz",
+                "Genk",
+                "Napoli",
+                "Chelsea",
+                "Al-Hilal"
+            ],
+            "stats": "90% de duels gagnés, 1 but de la tête"
+        },
+        {
+            "nom": "Moussa Niakhaté",
+            "club": "Lyon",
+            "age": 29,
+            "faits": "11 matchs, 1 passe décisive",
+            "naissance": "8 mars 1996, Roubaix, France",
+            "parcours": [
+                "Valenciennes",
+                "Metz",
+                "Mayence",
+                "Nottingham Forest",
+                "Lyon"
+            ],
+            "stats": "2 cartons jaunes, 1 passe décisive"
+        },
+        {
+            "nom": "Abdoulaye Seck",
+            "club": "Maccabi Haïfa",
+            "age": 33,
+            "faits": "13 matchs, 2 buts",
+            "naissance": "4 juin 1992, Dakar, Sénégal",
+            "parcours": [
+                "Diambars",
+                "Antwerp",
+                "Maccabi Haïfa"
+            ],
+            "stats": "2 buts, 1 interception/match, 13 matchs"
+        },
+        {
+            "nom": "El Hadji Malick Diouf",
+            "club": "West Ham",
+            "age": 20,
+            "faits": "10 matchs, 3 passes décisives",
+            "naissance": "2004, Dakar, Sénégal",
+            "parcours": [
+                "Génération Foot",
+                "Metz",
+                "West Ham"
+            ],
+            "stats": "944 minutes de jeu, 3 passes décisives"
+        },
+        {
+            "nom": "Ismail Jakobs",
+            "club": "Galatasaray",
+            "age": 26,
+            "faits": "12 matchs, 0 but",
+            "naissance": "17 août 1999, Cologne, Allemagne",
+            "parcours": [
+                "FC Cologne",
+                "AS Monaco",
+                "Galatasaray"
+            ],
+            "stats": "589 minutes de jeu, 2 passes décisives"
+        },
+        {
+            "nom": "Antoine Mendy",
+            "club": "OGC Nice",
+            "age": 21,
+            "faits": "6 matchs, 1 carton jaune",
+            "naissance": "27 mai 2004, Marseille, France",
+            "parcours": [
+                "OGC Nice"
+            ],
+            "stats": "1111 minutes, 1 passe décisive, 3 cartons jaunes"
+        },
+        {
+            "nom": "Krépin Diatta",
+            "club": "AS Monaco",
+            "age": 26,
+            "faits": "MVP d’octobre, 31 buts en carrière",
+            "naissance": "25 février 1999, Dakar, Sénégal",
+            "parcours": [
+                "Sarpsborg",
+                "Club Bruges",
+                "AS Monaco"
+            ],
+            "stats": "8 passes décisives"
+        },
+        {
+            "nom": "Moustapha Mbow",
+            "club": "Paris FC",
+            "age": 25,
+            "faits": "11 matchs, 2 cartons jaunes",
+            "naissance": "8 mars 2000, Dakar, Sénégal",
+            "parcours": [
+                "AF Darou Salam",
+                "Reims",
+                "Nîmes",
+                "Seraing",
+                "Paris FC"
+            ],
+            "stats": "540 minutes, 13 buts encaissés"
+        },
+        {
+            "nom": "Mamadou Sarr",
+            "club": "Strasbourg",
+            "age": 20,
+            "faits": "9 matchs, 15 tacles",
+            "naissance": "29 août 2005, Martigues, France",
+            "parcours": [
+                "Lens",
+                "Lyon",
+                "RWDM",
+                "Strasbourg (prêt Chelsea)"
+            ],
+            "stats": "990 minutes de jeu, 0 but, 7 clean sheets"
+        }
+    ],
+    "Milieux de terrain": [
+        {
+            "nom": "Idrissa Gana Gueye",
+            "club": "Everton",
+            "age": 36,
+            "faits": "10 matchs, 1 but",
+            "naissance": "26 septembre 1989, Dakar, Sénégal",
+            "parcours": [
+                "Diambars",
+                "Lille",
+                "Aston Villa",
+                "Everton",
+                "PSG",
+                "Everton"
+            ],
+            "stats": "197 passes tentées,172 réussies"
+        },
+        {
+            "nom": "Pathé Ciss",
+            "club": "Rayo Vallecano",
+            "age": 31,
+            "faits": "16 matchs, 1 but",
+            "naissance": "16 mars 1994, Dakar, Sénégal",
+            "parcours": [
+                "Diambars",
+                "União Madeira",
+                "Famalicão",
+                "Fuenlabrada",
+                "Rayo Vallecano"
+            ],
+            "stats": "1102 minutes,2 buts, 3 passes"
+        },
+        {
+            "nom": "Pape Gueye",
+            "club": "Villarreal",
+            "age": 26,
+            "faits": "14 matchs, 2 buts",
+            "naissance": "24 janvier 1999, Montreuil, France",
+            "parcours": [
+                "Le Havre",
+                "Marseille",
+                "Séville",
+                "Villarreal"
+            ],
+            "stats": "750 minutes de jeu , 2 buts, 1 passe"
+        },
+        {
+            "nom": "Pape Matar Sarr",
+            "club": "Tottenham",
+            "age": 22,
+            "faits": "1 match en Supercoupe UEFA",
+            "naissance": "14 septembre 2002, Thiaroye, Sénégal",
+            "parcours": [
+                "Génération Foot",
+                "Metz",
+                "Tottenham"
+            ],
+            "stats": "1658 minutes, 7 buts, 3 passes"
+        },
+        {
+            "nom": "Rassoul Ndiaye",
+            "club": "Le Havre AC",
+            "age": 23,
+            "faits": "11 matchs, 3 buts",
+            "naissance": "11 décembre 2001, Besançon, France",
+            "parcours": [
+                "Racing Besançon",
+                "Sochaux",
+                "Le Havre"
+            ],
+            "stats": "435 minutes, 1 but, 7 tacles réussis"
+        }
+    ],
+    "Attaquants": [
+        {
+            "nom": "Sadio Mané",
+            "club": "Al-Nassr",
+            "age": 33,
+            "faits": "23 matchs, 9 buts",
+            "naissance": "10 avril 1992, Bambali, Sénégal",
+            "parcours": [
+                "Génération Foot",
+                "Metz",
+                "Salzburg",
+                "Southampton",
+                "Liverpool",
+                "Bayern",
+                "Al-Nassr"
+            ],
+            "stats": "9 buts, 7 passes, 1629 minutes de jeu"
+        },
+        {
+            "nom": "Ismaïla Sarr",
+            "club": "Crystal Palace",
+            "age": 27,
+            "faits": "16 matchs, 8 buts",
+            "naissance": "25 février 1998, Saint-Louis, Sénégal",
+            "parcours": [
+                "Génération Foot",
+                "Metz",
+                "Rennes",
+                "Watford",
+                "Marseille",
+                "Crystal Palace"
+            ],
+            "stats": "8 buts, 1 passe, 1629 minutes de jeu"
+        },
+        {
+            "nom": "Ilimane Ndiaye",
+            "club": "Everton",
+            "age": 25,
+            "faits": "12 matchs, 4 buts",
+            "naissance": "6 mars 2000, Rouen, France",
+            "parcours": [
+                "Marseille",
+                "Dakar Sacré-Cœur",
+                "Boreham Wood",
+                "Sheffield",
+                "Marseille",
+                "Everton"
+            ],
+            "stats": "4 buts, 1 passe, 510 minutes de jeu"
+        },
+        {
+            "nom": "Nicolas Jackson",
+            "club": "Bayern Munich",
+            "age": 24,
+            "faits": "12 matchs, 3 buts",
+            "naissance": "20 juin 2001, Banjul, Gambie",
+            "parcours": [
+                "Casa Sports",
+                "Villarreal",
+                "Mirandés",
+                "Chelsea",
+                "Bayern Munich"
+            ],
+            "stats": "3 buts, 1 passe, 732 minutes de jeu"
+        },
+        {
+            "nom": "Chérif Ndiaye",
+            "club": "Samsunspor",
+            "age": 29,
+            "faits": "8 sélections, 1 but",
+            "naissance": "23 janvier 1996, Dakar, Sénégal",
+            "parcours": [
+                "HLM Grand Yoff",
+                "Gorica",
+                "Göztepe",
+                "Shanghai Port",
+                "Étoile Rouge",
+                "Samsunspor"
+            ],
+            "stats": "6 buts, 3 passes, 732 minutes de jeu"
+        },
+        {
+            "nom": "Cheikh Sabaly",
+            "club": "FC Metz",
+            "age": 26,
+            "faits": "14 matchs, 4 passes décisives",
+            "naissance": "4 mars 1999, Kolda, Sénégal",
+            "parcours": [
+                "Génération Foot",
+                "Metz",
+                "Pau",
+                "Quevilly-Rouen"
+            ],
+            "stats": "1 but, 4 passes, 270 minutes de jeu"
+        },
+        {
+            "nom": "Assane Diao",
+            "club": "Como",
+            "age": 20,
+            "faits": "4 matchs, 221 minutes",
+            "naissance": "7 septembre 2005, Ndangane, Sénégal",
+            "parcours": [
+                "Badajoz",
+                "Flecha Negra",
+                "Cádiz",
+                "Betis",
+                "Côme"
+            ],
+            "stats": "8 buts, 1 passe, 221 minutes de jeu"
+        },
+        {
+            "nom": "Boulaye Dia",
+            "club": "Lazio",
+            "age": 28,
+            "faits": "11 matchs, 1 but",
+            "naissance": "16 novembre 1996, Oyonnax, France",
+            "parcours": [
+                "Jura Sud",
+                "Reims",
+                "Villarreal",
+                "Salernitana",
+                "Lazio"
+            ],
+            "stats": "1 but, 0 passe, 657 minutes de jeu"
+        },
+        {
+            "nom": "Habib Diallo",
+            "club": "Al-Shabab",
+            "age": 30,
+            "faits": "27 matchs, 7 buts",
+            "naissance": "18 juin 1995, Thiès, Sénégal",
+            "parcours": [
+                "Génération Foot",
+                "Metz",
+                "Brest",
+                "Strasbourg",
+                "Al-Shabab",
+                "Damac",
+                "Metz"
+            ],
+            "stats": "7 buts, 1 passe, 26 apparitions"
+        }
+    ]
+}

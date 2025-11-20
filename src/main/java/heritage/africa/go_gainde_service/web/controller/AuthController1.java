@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/web/auth")
 @RequiredArgsConstructor
-public class UtilisateurController1 {
+public class AuthController1 {
 
     private final UtilisateurService userService;
     private final AuthenticationManager authenticationManager;
