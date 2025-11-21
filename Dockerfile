@@ -1,7 +1,7 @@
-## Multi-stage Dockerfile for production build of accel-connect (Spring Boot, Maven, Java 17)
+## Multi-stage Dockerfile for production build of accel-connect (Spring Boot, Maven, Java 21)
 
 # -------- Build stage --------
-FROM maven:3.9.9-eclipse-temurin-17 AS build
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 WORKDIR /workspace/app
 
 # Cache dependencies first
@@ -12,10 +12,8 @@ RUN mvn -B -q -e -DskipTests dependency:go-offline
 COPY src ./src
 RUN mvn -B -q -e -DskipTests package
 
-
 # -------- Runtime stage --------
-FROM eclipse-temurin:17-jre-alpine
-
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Copy the fat jar from the build stage
