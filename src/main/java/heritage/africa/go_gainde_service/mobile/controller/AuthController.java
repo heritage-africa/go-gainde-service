@@ -56,7 +56,7 @@ import lombok.RequiredArgsConstructor;
 
 // AuthController.java
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/v1/mobile/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationManager authenticationManager;

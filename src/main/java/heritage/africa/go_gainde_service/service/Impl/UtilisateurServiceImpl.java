@@ -9,9 +9,6 @@ import heritage.africa.go_gainde_service.entity.Otp;
 import heritage.africa.go_gainde_service.entity.Utilisateur;
 import heritage.africa.go_gainde_service.entity.enums.OtpType;
 import heritage.africa.go_gainde_service.entity.enums.Role;
-import heritage.africa.go_gainde_service.mobile.dto.Request.AuthRequest;
-import heritage.africa.go_gainde_service.web.dto.request.AuthRequest1;
-
 import heritage.africa.go_gainde_service.mobile.dto.Request.UserRegistrationRequest;
 import heritage.africa.go_gainde_service.repository.UtilisateurRepository;
 import heritage.africa.go_gainde_service.service.OtpService;

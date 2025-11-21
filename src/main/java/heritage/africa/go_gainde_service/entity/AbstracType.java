@@ -22,10 +22,6 @@ public class AbstracType {
     private Long id;
 
 
-
-    //createAt, updateAt
-
-
     protected LocalDateTime createdAt;
     protected LocalDateTime updatedAt;
     

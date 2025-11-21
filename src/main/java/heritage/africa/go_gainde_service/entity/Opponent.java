@@ -1,6 +1,8 @@
 package heritage.africa.go_gainde_service.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,10 +13,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Comment extends AbstracType {
+public class Opponent extends AbstracType {
 
-    String postId;
-    String userId;
-    String content;
-    
+    private String name;
+
+
+    private String logo;
+
+    @OneToOne
+    @JoinColumn(name = "match_id")
+    private Match match;
+
+    // Getters & Setters
 }

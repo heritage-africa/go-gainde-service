@@ -1,6 +1,9 @@
 package heritage.africa.go_gainde_service.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,10 +14,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Comment extends AbstracType {
+public class CategorieProduit extends AbstracType {
 
-    String postId;
-    String userId;
-    String content;
+    private String nomCategorie;
+
+
+    @OneToMany(mappedBy = "categoryProduit")
+    private List<Produit> produits;
+
     
 }

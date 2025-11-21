@@ -1,5 +1,5 @@
 
-POST http://localhost:8085/api/v1/auth/register
+POST http://localhost:8085/api/v1/mobile/auth/register
 Content-Type: application/json
 
 {
@@ -14,7 +14,7 @@ Content-Type: application/json
 
 #########
 
-POST http://localhost:8085/api/v1/auth/verify-otp 
+POST http://localhost:8085/api/v1/mobile/auth/verify-otp 
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 
 #########
 
-POST http://localhost:8085/api/v1/auth/login
+POST http://localhost:8085/api/v1/mobile/auth/login
 Content-Type: application/json
 
 {
@@ -41,7 +41,7 @@ Content-Type: application/json
 ####
 
 
-POST http://localhost:8085/api/v1/auth/send-otp
+POST http://localhost:8085/api/v1/mobile/auth/send-otp
 Content-Type: application/json
 
 {
@@ -56,17 +56,17 @@ Content-Type: application/json
 }
 
 ####
-POST http://localhost:8085/api/v1/auth/verify-otp
+POST http://localhost:8085/api/v1/mobile/auth/verify-otp
 Content-Type: application/json
 
 {
-    "code": "230587",
+    "code": "087456",
     "otpId": "1"
     
 }
 
 ###
-POST http://localhost:8085/api/v1/auth/register
+POST http://localhost:8085/api/v1/mobile/auth/register
 Content-Type: application/json
 
 {
@@ -84,11 +84,71 @@ Content-Type: application/json
 
 {
     "email": "admin@accel.tech",
-    "password": "123453"
+    "password": "123456"
     
 }
 
 
+####
+
+
+GET http://localhost:8085/api/v1/produits
+
 
 #    private String email;
 #     private String password;
+
+
+// list by ID
+
+###
+
+GET http://localhost:8085/api/v1/produits/1
+
+###
+
+PUT http://localhost:8085/api/v1/web/produits/1
+Content-Type: application/json
+
+{
+    "libelle": "Nouveau Libellé",
+    "description": "Nouvelle Description",
+    "prix": 799.99,
+    "taille": "Medium",
+    "quantity": 15,
+    "categorieProduitId": 2,
+    "image": null
+}
+
+
+####
+
+GET http://localhost:8085/api/v1/produits/search?nomProduit=Téléphone GoPhone X
+
+
+###
+
+GET http://localhost:8085/api/v1/produits/search?categorieId=1&prixMin=30
+
+
+###
+
+
+GET http://localhost:8085/api/v1/web/produits/paged?page=0&size=2
+
+
+###
+
+GET http://localhost:8085/api/v1/web/produits/1/new-price
+
+
+
+###
+
+
+PATCH http://localhost:8085/api/v1/web/produits/1/new-price?newPrix=12.0
+Content-Type: application/json
+
+{
+    "newPrix": 75.50
+}
