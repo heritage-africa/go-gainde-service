@@ -6,8 +6,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import heritage.africa.go_gainde_service.entity.Competition;
 import heritage.africa.go_gainde_service.entity.Match;
+import heritage.africa.go_gainde_service.web.dto.request.CompetitionRequest;
 import heritage.africa.go_gainde_service.web.dto.request.MatchRequest;
+import heritage.africa.go_gainde_service.web.dto.response.CompetitionResponse;
 import heritage.africa.go_gainde_service.web.dto.response.MatchResponse;
 
 @Mapper(componentModel = "spring")
@@ -31,6 +34,16 @@ public interface MatchMapper {
     @Mapping(target = "opponent", source = "opponent.name")
     @Mapping(target = "competition", source = "competition.name")
     MatchResponse toMatchResponse(Match match);
+
+
+
+    @Mapping(target= "name", source = "name")
+    Competition toCompetitionEntity(CompetitionRequest request);
+
+
+    // to competition
+
+    CompetitionResponse toCompetitionResponse(Competition competition);
 
     /**
      * Convertit String en LocalDateTime

@@ -27,15 +27,14 @@ public class MatchController {
     /**
      * POST /api/matchs - Créer un nouveau match
      */
-    @PostMapping
+     @PostMapping
     public ResponseEntity<MatchResponse> creerMatch(@Valid @RequestBody MatchRequest request) {
-        try {
-            MatchResponse match = matchService.creerMatch(request);
-            return ResponseEntity.status(HttpStatus.CREATED).body(match);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+        // Suppression du bloc try-catch pour laisser l'exception remonter.
+        // Cela forcera le GlobalExceptionHandler à fonctionner ou affichera l'erreur dans la console du serveur.
+        MatchResponse match = matchService.creerMatch(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(match);
     }
+
 
     /**
      * GET /api/matchs - Lister tous les matchs

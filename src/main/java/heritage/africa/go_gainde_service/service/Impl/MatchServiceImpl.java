@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import heritage.africa.go_gainde_service.entity.Competition;
 import heritage.africa.go_gainde_service.entity.Match;
 import heritage.africa.go_gainde_service.entity.Opponent;
 import heritage.africa.go_gainde_service.entity.Stade;
@@ -64,6 +65,21 @@ public class MatchServiceImpl implements MatchService {
             }
         }
 
+        Competition competition = null;
+        if (request.getCompetition() != null) {
+            if (request.getCompetition().getId() != null) {
+                competition = competitionRepository.findById(request.getCompetition().getId())
+                        .orElseThrow(() -> new RuntimeException("Compétition non trouvée"));
+            } else {
+                competition = new Competition();
+                competition.setName(request.getCompetition().getName());
+                competition.setFullName(request.getCompetition().getFullName());
+                competition.setLogo(request.getCompetition().getLogo());
+
+            }
+        }
+        
+
         // Sauvegarde du match d'abord
         Match savedMatch = matchRepository.save(match);
 
@@ -77,6 +93,11 @@ public class MatchServiceImpl implements MatchService {
         if (opponent != null) {
             opponent.setMatch(savedMatch);
             opponentRepository.save(opponent);
+        }
+        // Association et sauvegarde de la compétition
+        if (competition != null) {
+            competition.setMatch(savedMatch);
+            competitionRepository.save(competition);
         }
 
         // Conversion en DTO de réponse via MapStruct

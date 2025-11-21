@@ -9,5 +9,5 @@ public class StadiumRequest {
     private String city;
     private String country;
 
-    // Getters & Setters
+
 }
