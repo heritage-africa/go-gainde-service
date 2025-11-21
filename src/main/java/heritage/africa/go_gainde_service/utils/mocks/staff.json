@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "fullName": "Pape Thiaw",
+    "role": "Manager/Sélectionneur",
+    "age": 44,
+    "nationality": "Sénégalaise",
+    "startDate": "11/2023",
+    "contractEnd": "06/2026",
+    "photoUrl": "path/to/pape_thiaw_photo.jpg"
+  },
+  {
+    "id": 2,
+    "fullName": "Mamadou Diallo",
+    "role": "Entraîneur Adjoint",
+    "age": 50,
+    "nationality": "Sénégalaise",
+    "startDate": "01/2024",
+    "contractEnd": "06/2026",
+    "photoUrl": "path/to/mamadou_diallo_photo.jpg"
+  },
+  {
+    "id": 3,
+    "fullName": "Alain Dupont",
+    "role": "Préparateur Physique",
+    "age": 47,
+    "nationality": "Française",
+    "startDate": "09/2022",
+    "contractEnd": "12/2025",
+    "photoUrl": "path/to/alain_dupont_photo.jpg"
+  },
+  {
+    "id": 4,
+    "fullName": "Dr. Omar Seck",
+    "role": "Médecin de l'Équipe",
+    "age": 55,
+    "nationality": "Sénégalaise",
+    "startDate": "03/2018",
+    "contractEnd": "06/2027",
+    "photoUrl": "path/to/omar_seck_photo.jpg"
+  },
+  {
+    "id": 5,
+    "fullName": "Amadou Ba",
+    "role": "Entraîneur des Gardiens",
+    "age": 51,
+    "nationality": "Sénégalaise",
+    "startDate": "01/2020",
+    "contractEnd": "06/2026",
+    "photoUrl": "path/to/amadou_ba_photo.jpg"
+  }
+]

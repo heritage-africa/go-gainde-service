@@ -45,7 +45,7 @@ POST http://localhost:8085/api/v1/mobile/auth/send-otp
 Content-Type: application/json
 
 {
-    "phoneNumber": "+221788930107",
+    "phoneNumber": "+221776708818",
     "username": "boubs",
     "nom": "boubs",
     "prenom": "boubs",
